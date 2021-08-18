@@ -16,7 +16,7 @@ img{
 }
 
 
-#mainNext,#mainFirst,#mainSecond,#gaming,#result{
+#mainNext,#mainFirst,#mainSecond,#gaming,#result,#showResult{
   display:none;
 }   
 
