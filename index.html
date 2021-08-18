@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js" integrity="sha512-UxP+UhJaGRWuMG2YC6LPWYpFQnsSgnor0VUF3BHdD83PS/pOpN+FYbZmrYN+ISX8jnvgVUciqP/fILOXDjZSwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/main.css">
+  <script defer src="./js/main.js"></script>
+  <title></title>
+</head>
+<body>
+  <div class="container">
+    <section id="main" class="mx-auto my-5 pb-5 pt-5 px-3">
+      <h1>김진이 만든 두뇌 훈련법</h1
+        ><br>
+      <h1>N-back 트레이닝!</h1>
+      <div class="col-sm-10 mx-auto mt-5">
+        <img src="./images/main.png" alt="mainImage" class="img-fluid">
+      </div>
+      
+      <button type="button" class="btn btn-outline-warning mt-3" onclick="begin()">시작하기</button>
+    </section>
+      
+    <section id="mainNext" class="mx-auto my-5 pb-5 pt-5 px-3">
+      <h1>N-back 테스트란?</h1>
+
+      <p>게임 시작 버튼을 눌러 원하는 단계를 설정 후<br>
+       단계에 맞는 위치의 숫자가 일치한지 <br>
+       O,X로 정답을 맞추는 게임입니다
+      </p>      
+      <div class="firstBtn">
+        <button type="button" class="btn btn-outline-warning" onclick="selectGrade()">게임 시작</button>
+        <button type="button" class="btn btn-outline-warning">게임 방법</button>
+      </div>      
+    </section>
+
+    <section id="mainSecond" class="mx-auto my-5 pb-5 pt-5 px-3">
+      <h1>원하는 게임 단계 설정!</h1>
+      <br>
+
+      <p style="color:crimson;">2-Back:차례대로 나오는 숫자를 외운 뒤<br>
+        세번째로 나오는 숫자부터 두번 전에 나왔던 숫자와 <br>
+        일치한지 O,X로 표시한다<br>        
+        ex)첫번째 숫자가 5였다면 세번째 숫자가 5면 'O'
+      </p>
+      <p style="color:limegreen;">5-Back:차례대로 나오는 숫자를 외운 뒤<br>
+        여섯번째로 나오는 숫자부터 다섯번 전에 나왔던 숫자와 <br>
+        일치한지 O,X로 표시한다<br>
+        ex)첫번째 숫자가 5였다면 여섯번째 숫자가 5면 'O'
+      </p>           
+    
+      <div class="secondBtn">
+        <button id="lv-2" type="button" class="btn btn-outline-warning" onclick="startGame(0,10)">2-Back</button>
+        <button id="lv-5" type="button" class="btn btn-outline-warning" onclick="startGame(0,20)">5-Back</button>
+      </div>
+    </section>
+
+    <section id="gaming" class="mx-auto my-5 pb-5 pt-5 px-3">
+      <div class="gamingBox x-auto my-5 pb-5 pt-5 px-3">       
+        <div class="gamingBoxInner">
+          &nbsp;
+        </div>        
+      </div>
+    </section>
+
+
+
+    <section id="result" class="mx-auto my-5 pb-5 pt-5 px-3">
+      <h1>O,X를 모두 체크했나요?</h1>
+      <h1>정답이 맞는지 확인해보세요!</h1>
+      <div class="resultname col-lg-6 col-md-8 col-sm-10 col-12 mx-auto">
+
+      </div>
+      <div id="resultImg"  class="my-3 col-lg-6 col-md-8 col-sm-10 col-12 mx-auto" >
+        <button type="button" class="btn btn-outline-warning" onclick="showResult()">정답 확인하기!</button>
+      </div>
+      <div class="resultDesc">
+
+      </div>
+     
+      
+    </section>
+
+    <section id="showResult" class="mx-auto my-5 pb-5 pt-5 px-3">
+      
+      
+      <div class="resultname col-lg-6 col-md-8 col-sm-10 col-12 mx-auto">
+        <h1>&lt;정답 공개&gt;</h1>
+        <div class="answerContainer">
+                      
+        </div>
+      <div id="resultImg"  class="my-3 col-lg-6 col-md-8 col-sm-10 col-12 mx-auto" >
+        
+      </div>
+      <div class="resultDesc">
+
+      </div>    
+      
+    </section>
+  </div>
+  
+</body>
+</html>
