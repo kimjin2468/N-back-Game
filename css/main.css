@@ -16,11 +16,9 @@ img{
 }
 
 
-#mainNext,#mainFirst,#mainSecond,#gaming,#result,#showResult{
+#mainNext,#mainFirst,#mainSecond,#gaming,#result{
   display:none;
-}
-
-   
+}   
 
 .gamingBox .gamingBoxInner{
   font-size: 100px;
@@ -29,13 +27,16 @@ img{
 #showResult .resultname .answerContainer{  
   display: grid;
   gap:2;
-  grid-template-columns: repeat(5,1fr)
+  grid-template-columns: repeat(5,1fr);
+  background-color:rgba(255,200,0,.5)
+  
 }
 #showResult .resultname .answerContainer .answerNumber{
   font-family: 'Nanum Pen Script', cursive;  
   border: 1px solid white;
   height:125px;  
   font-size: 20px;
+  
 }
 
 #showResult .resultname .answerContainer .answerNumber .answerAnswer{

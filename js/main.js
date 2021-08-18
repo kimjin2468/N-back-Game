@@ -89,11 +89,11 @@ function startGame(counter,level){
 function deleteNumber(){
   answer.push(gamingBoxEl.innerHTML)
   gamingBoxEl.innerHTML='&nbsp;'
-  console.log('deleteNumber!')
+  
 }
 function makeNumber(){
   gamingBoxEl.innerHTML=Math.floor(Math.random()*10)
-  console.log('makenumber!')
+  
 }
  function showBtn(){
   gamingEl.style.WebkitAnimation = "fadeOut 1s";
