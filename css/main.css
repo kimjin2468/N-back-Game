@@ -16,22 +16,77 @@ img{
 }
 
 
-#mainNext,#mainFirst,#mainSecond,#gaming,#result,#showResult{
-  display:none;
+#mainFirst,#mainSecond,#mainNext,#gaming,#result,#showResult{
+  /* display: none; */
 }   
-
-.gamingBox .gamingBoxInner{
-  font-size: 100px;
+.gamingBox .gamingBoxInner{  
+  font-size: 150px;
   font-weight: 800;  
+  
 }
-#showResult .resultname .answerContainer{  
+.gamingBox .answerContainer{  
+  display: grid;
+  gap:1rem;
+  grid-template-columns: repeat(5,1fr);  
+  opacity: 1;
+}
+.gamingBox .answerContainer.lv2{
+  grid-template-columns: repeat(8,1fr);
+}
+.gamingBox .answerContainer.lv5{
+  grid-template-columns: repeat(8,1fr);
+}
+.gamingBox .answerContainer .answerNumber{
+  background-color:#fceabb;
+  font-family: 'Nanum Pen Script', cursive;  
+  border: 1px solid white;
+  height:125px;  
+  font-size: 20px;
+}
+.gamingBox .answerContainer .answerNumber .answerInput{
+  font-family: 'Nanum Pen Script', cursive;    
+  border-top: 1px solid white;
+  height:80px;
+  font-size: 20px;
+  
+}
+.gamingBox .answerContainer .answerNumber .answerInput p{
+  cursor: pointer;
+}
+.gamingBox .answerContainer .answerNumber .answerInput p:active{
+  background-color:tomato;
+}
+.gamingBox .answerContainer .answerNumber .answerInput p.answered{
+  background-color:tomato;
+}
+.gamingBox .answerContainer .answerNumber .answerInput p:nth-child(1){
+  padding-top:6px;
+  margin-bottom: 0;
+  border-bottom: 1px solid white;
+}
+.gamingBox .answerContainer .answerNumber .answerInput p:nth-child(2){
+  margin:0px;
+  border-top: 1px soild white;
+  
+  
+}
+.gamingBox .answerContainer .answerBox{
+  background-color:pink;
+  height:80px;
+  width:80px;  
+}
+#showResult .resultname > h1{
+  margin-bottom:20px;
+}
+#showResult .resultname .resultContainer{  
   display: grid;
   gap:2;
   grid-template-columns: repeat(5,1fr);
-  background-color:rgba(255,200,0,.5)
-  
+  background-color:rgba(255,200,0,.5);
+  margin-bottom:40px;
 }
-#showResult .resultname .answerContainer .answerNumber{
+
+#showResult .resultname .resultContainer .resultNumber{
   font-family: 'Nanum Pen Script', cursive;  
   border: 1px solid white;
   height:125px;  
@@ -39,7 +94,7 @@ img{
   
 }
 
-#showResult .resultname .answerContainer .answerNumber .answerAnswer{
+#showResult .resultname .resultContainer .resultNumber .resultAnswer{
   font-family: initial;
   border-top: 1px solid white;
   height:50%;
@@ -72,6 +127,10 @@ img{
 @-webkit-keyframes fadeOut {
   from {opacity: 1;}
   to {opacity: 0;}
+}
+
+@keyframes sparkle {
+  
 }
 
 .fadeIn {

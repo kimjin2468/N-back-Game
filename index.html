@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/media.css">
   <script defer src="./js/main.js"></script>
   <title></title>
 </head>
@@ -30,6 +31,7 @@
     </section>
       
     <section id="mainNext" class="mx-auto my-5 pb-5 pt-5 px-3">
+    <div class="textBox">
       <h1>N-back 테스트란?</h1>
 
       <p>게임 시작 버튼을 눌러 원하는 단계를 설정 후<br>
@@ -38,8 +40,9 @@
       </p>      
       <div class="firstBtn">
         <button type="button" class="btn btn-outline-warning" onclick="selectGrade()">게임 시작</button>
-        <button type="button" class="btn btn-outline-warning">게임 방법</button>
+        <button type="button" class="btn btn-outline-warning" onclick="howToPlay()">게임 방법</button>
       </div>      
+    </div>
     </section>
 
     <section id="mainSecond" class="mx-auto my-5 pb-5 pt-5 px-3">
@@ -63,12 +66,52 @@
       </div>
     </section>
 
-    <section id="gaming" class="mx-auto my-5 pb-5 pt-5 px-3">
-      <div class="gamingBox x-auto my-5 pb-5 pt-5 px-3">       
+    <section id="gaming" class="mx-auto my-5 pb-5 px-3">
+      <div class="gamingBox x-auto mb-10 pb-10 px-3">       
         <div class="gamingBoxInner">
           &nbsp;
-        </div>        
+          
+        </div>       
+        <div class="answerContainer">          
+          <!-- <div class="answerNumber">1
+            <div class="answerInput">1</div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">1</div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">1</div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">1</div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">1</div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <div class="aswerO">O</div>
+              <div class="asnwerX">X</div>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <div class="aswerO">O</div>
+              <div class="asnwerX">X</div>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <div class="aswerO">O</div>
+              <div class="asnwerX">X</div>
+            </div>
+          </div> -->
+        </div>
+        
+        
       </div>
+
+     
     </section>
 
 
@@ -89,23 +132,58 @@
       
     </section>
 
-    <section id="showResult" class="mx-auto my-5 pb-5 pt-5 px-3">
+    <section id="showResult" class="mx-auto my-5 pb-5 pt-3 px-3">
       
       
-      <div class="resultname col-lg-6 col-md-8 col-sm-10 col-12 mx-auto">
+      <div class="resultname col-lg-6 col-md-8 col-sm-10 col-12 mx-auto mb-3">
         <h1>&lt;정답 공개&gt;</h1>
-        <div class="answerContainer">        
-          
-        </div>
+        
+          <div class="resultContainer">
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+            <div class="resultNumber">1
+              <div class="resultAnswer">1</div>
+            </div>
+          </div>
+         
       <div id="resultImg"  class="my-3 col-lg-6 col-md-8 col-sm-10 col-12 mx-auto" >
         
       </div>
-      <div class="resultDesc">
-
+      <div class="resultDesc">        
+        <button type="button" class="btn btn-outline-warning" onclick="changeResult()">몇개나 맞췄을까?!</button>
       </div>    
       
     </section>
   </div>
   
+
+  <div class="test">
+
+  </div>
 </body>
 </html>

@@ -2,24 +2,61 @@ const mainEl = document.querySelector('#main')
 const mainNextEl = document.querySelector('#mainNext')
 const mainSecondEl = document.querySelector('#mainSecond')
 const gamingEl = document.querySelector('#gaming')
-const answerForm = document.querySelector('.answerForm')
-const answerBox = document.querySelector('.answerBox')
 const setGrade = document.querySelector('.grade')
 const answerBtn = document.querySelector('#answerBtn')
+const answerContainerEl = document.querySelector('.answerContainer')
 const gamingBoxEl = document.querySelector('.gamingBoxInner')
 const resultEl = document.querySelector('#result')
 const showResultEl = document.querySelector('#showResult')
 const lv2El = document.querySelector('#lv-2')
 const lv5El = document.querySelector('#lv-5')
-const answerContainerEl = document.querySelector('.answerContainer')
+const resultContainerEl = document.querySelector('.resultContainer')
+const textBoxEl = document.querySelector('.textBox')
+let sparkleCount = 0
+let sparkleElcount = 0
+let c = 0
 
 let LEVEL = 0
-
-
-
 let counter = 0
 let answer = []
 let answerFromUser = []
+
+
+
+function sparkle (LEVEL) {     
+  const answerNumbers = document.querySelectorAll('.answerNumber')
+  if(LEVEL ===10 ) {    
+    if(sparkleCount<3){
+      answerNumbers[sparkleElcount].style.backgroundColor='whitesmoke';
+      setTimeout(() => {    
+        answerNumbers[sparkleElcount].style.backgroundColor='#fceabb';
+      }, 300);  
+      setTimeout(() => {    
+        sparkleCount++    
+        sparkle(10)  
+        console.log(sparkleCount)
+      }, 600);
+      }
+      else{
+        setTimeout(() => {
+          console.log('done!')
+          if(sparkleElcount<answerNumbers.length){        
+          sparkleElcount++
+          sparkleCount = 0
+          sparkle(10)
+          }        
+          else{
+            console.log('모두 변경 완료')            
+          }  
+        }, 1900);
+      }
+    }
+  
+}
+
+
+
+
 
 
 function begin(){
@@ -52,8 +89,156 @@ function selectGrade(){
    },450)
 }
 
-function startGame(counter,level){
-  do{
+
+lv2El.addEventListener('click',function(){
+  
+  for(let i=0; i<8; i++){
+    let k=0
+    const answerNumber = document.createElement('div')
+    answerNumber.classList.add('answerNumber')
+    answerNumber.innerHTML = `${i+3} = ${i+1}`;
+    answerContainerEl.append(answerNumber)
+    const answerInput = document.createElement('div')
+    answerInput.classList.add('answerInput')
+    answerNumber.appendChild(answerInput)
+    for(let j=0; j<1; j++){
+      const p = document.createElement('p')
+      p.classList.add('answerO')
+      p.innerHTML = 'O'
+      answerInput.appendChild(p)
+      
+      const p1 = document.createElement('p')
+      p1.classList.add('answerX')
+      p1.innerHTML = 'X'
+      answerInput.appendChild(p1)
+    }           
+    
+  }
+ 
+
+  const answerOEl = document.querySelectorAll('.answerO')
+  const answerXEl = document.querySelectorAll('.answerX')
+
+  for(let i=0; i<8; i++){
+  answerOEl[i].addEventListener('click',function(event){
+    if(answerXEl[i].classList==""){
+      if(event.target.classList[0]==="answered"){
+        event.target.classList.remove('answered')      
+        console.log('1')
+        return        
+      }   
+    }
+    else{
+      answerXEl[i].classList.remove('answered')
+      console.log('2')
+    }
+
+    event.target.classList.add('answered')  
+  })
+    
+  answerXEl[i].addEventListener('click',function(event){
+    if(answerOEl[i].classList==""){
+      if(event.target.classList[0]==="answered"){
+        event.target.classList.remove('answered')      
+        return
+      }
+    }
+    else{
+      answerOEl[i].classList.remove('answered')
+    }
+    event.target.classList.add('answered')  
+  })  
+}
+answerContainerEl.classList.add('lv2')
+
+})
+
+
+lv5El.addEventListener('click',function(){
+  for(let i=0; i<15; i++){
+    const answerNumber = document.createElement('div')
+    answerNumber.classList.add('answerNumber')
+    answerNumber.innerHTML = `${i+6} = ${i+1}`;
+    answerContainerEl.append(answerNumber)
+    const answerInput = document.createElement('div')
+    answerInput.classList.add('answerInput')
+    answerNumber.appendChild(answerInput)
+    for(let j=0; j<1; j++){
+      const p = document.createElement('p')
+      p.classList.add('answerO')
+      p.innerHTML = 'O'
+      answerInput.appendChild(p)
+      
+      const p1 = document.createElement('p')
+      p1.classList.add('answerX')
+      p1.innerHTML = 'X'
+      answerInput.appendChild(p1)
+    }    
+  }
+
+  const answerOEl = document.querySelectorAll('.answerO')
+  const answerXEl = document.querySelectorAll('.answerX')
+
+  for(let i=0; i<20; i++){
+  answerOEl[i].addEventListener('click',function(event){
+    if(answerXEl[i].classList==""){
+      if(event.target.classList[0]==="answered"){
+        event.target.classList.remove('answered')      
+        
+        return        
+      }   
+    }
+    else{
+      answerXEl[i].classList.remove('answered')
+      console.log('2')
+    }
+
+    event.target.classList.add('answered')  
+  })
+    
+  answerXEl[i].addEventListener('click',function(event){
+    if(answerOEl[i].classList==""){
+      if(event.target.classList[0]==="answered"){
+        event.target.classList.remove('answered')      
+        return
+      }
+    }
+    else{
+      answerOEl[i].classList.remove('answered')
+    }
+    event.target.classList.add('answered')  
+  })  
+}
+
+})
+
+
+
+
+function startGame(counter,level){ 
+  do{         
+    console.log(c)
+    c++
+    if(level===20&&c===6){
+      setTimeout(() => {
+        sparkle(10)        
+      }, 3700);  
+      setTimeout(() => {
+        gsap.to(answerContainerEl,1,{
+          opacity:1
+        })
+      },2000);
+    }
+    else if(level===10&&c===3){
+      setTimeout(() => {
+        sparkle(10)        
+      }, 3700);   
+      setTimeout(() => {
+        gsap.to(answerContainerEl,1,{
+          opacity:1
+        })
+      },2000);
+    }    
     LEVEL = level
     mainSecondEl.style.WebkitAnimation = "fadeOut 1s";
     mainSecondEl.style.animation = "fadeOut 1s";
@@ -66,6 +251,10 @@ function startGame(counter,level){
         gamingEl.style.display="block"
       },450)    
     },450)   
+   
+    
+  
+    
     
   } while(false){}  
   
@@ -78,6 +267,9 @@ function startGame(counter,level){
          counter++;         
          startGame(counter,level)         
          },3700)            //3700
+         
+         
+         
   }
   else{      
       setTimeout(function(){
@@ -137,112 +329,154 @@ function makeNumber(){
 
 function lv2Result (){
   for(let i=0; i<10; i++){
-    const answerNumber = document.createElement('div')  
-    answerNumber.classList.add('answerNumber') 
-    answerContainerEl.appendChild(answerNumber)
-    answerNumber.innerHTML=`${i+1}번`
-    const answerAnswerEl = document.createElement('div')
-    answerAnswerEl.classList.add('answerAnswer')
-    answerNumber.append(answerAnswerEl)     
-    answerAnswerEl.innerHTML= answer[i]  
-  }
+    const resultNumber = document.createElement('div')  
+    resultNumber.classList.add('resultNumber') 
+    resultContainerEl.appendChild(resultNumber)
+    resultNumber.innerHTML=`${i+1}번`
+    const resultAnswerEl = document.createElement('div')
+    resultAnswerEl.classList.add('resultAnswer')
+    resultNumber.append(resultAnswerEl)     
+    resultAnswerEl.innerHTML= answer[i]     
+ }
 }
 
 
 function lv5Result(){
   for(let i=0; i<20; i++){
-    const answerNumber = document.createElement('div')  
-    answerNumber.classList.add('answerNumber') 
-    answerContainerEl.appendChild(answerNumber)
-    answerNumber.innerHTML=`${i+1}번`
-    const answerAnswerEl = document.createElement('div')
-    answerAnswerEl.classList.add('answerAnswer')
-    answerNumber.append(answerAnswerEl)     
-    answerAnswerEl.innerHTML= answer[i]    
+    const resultNumber = document.createElement('div')  
+    resultNumber.classList.add('resultNumber') 
+    resultContainerEl.appendChild(resultNumber)
+    resultNumber.innerHTML=`${i+1}번`
+    const resultAnswerEl = document.createElement('div')
+    resultAnswerEl.classList.add('resultAnswer')
+    resultNumber.append(resultAnswerEl)     
+    resultAnswerEl.innerHTML= answer[i]    
+   
   }
+ 
+}
+function howToPlay(){
+  gsap.to(textBoxEl,1,{
+    opacity:0
+  })
+  setTimeout(() => {
+    gsap.to(textBoxEl,.5,{            
+      height:460      
+    })
+  }, 1000);
+}
+function reStart() {
+  showResultEl.WebkitAnimation = 'fadeOut 1s'
+  showResultEl.Animation = 'fadeOut 1s'
+  window.location = 'index.html'
 }
 
-//   for(let i=0; i<20; i++){
-    
-//   const answerAnswerEl = document.createElement('div')
-//   answerAnswerEl.classList.add('answerAnswer')
-//   const answerNumberEl = document.createElement('div')
-//   answerNumberEl.classList.add('answerNumber')
-//   answerNumberEl.append(answerAnswerEl)
-//   answerContainerEl.appendChild(answerNumberEl)
+const numbers = [1,2,3,4,5]
 
-//   answerNumberEl.innerHTML = `${i+1}번`
-//   answerAnswerEl.innerHTML = answer[i]
-//   console.log(answerAnswerEl)
+
+const answerNumberEl = document.querySelector('.answerNumber')
+
+let colorCount=0
+
+const d = document.querySelectorAll('.answerNumber')
+let dC = 0;
+function go(){
+  if(dC<d.length){
+    setTimeout(() => {
+      
+    }, 4000)
+    dC++
+    go()
+  }
   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// if(level === 10){
+//   for(let i=0; i<10; i++){
+//     const answerNumber = document.createElement('div')
+//     answerNumber.classList.add('answerNumber')
+//     answerNumber.innerHTML = `${i+1}번`;
+//     answerContainerEl.append(answerNumber)
+//     const answerInput = document.createElement('div')
+//     answerInput.classList.add('answerInput')
+//     answerNumber.appendChild(answerInput)
+//     for(let j=0; j<1; j++){
+//       const p = document.createElement('p')
+//       p.id = `O${j}`
+//       p.innerHTML = 'O'
+//       answerInput.appendChild(p)
+  
+//       const p1 = document.createElement('p')
+//       p1.id = `X${j}`
+//       p1.innerHTML = 'X'
+//       answerInput.appendChild(p1)
+//      }    
 //   }
+// }
+// else if(level === 20) {
+//   for(let i=0; i<20; i++){
+//     const answerNumber = document.createElement('div')
+//     answerNumber.classList.add('answerNumber')
+//     answerNumber.innerHTML = `${i+1}번`;
+//     answerContainerEl.append(answerNumber)
+//     const answerInput = document.createElement('div')
+//     answerInput.classList.add('answerInput')
+//     answerNumber.appendChild(answerInput)
+//     for(let j=0; j<1; j++){
+//       const p = document.createElement('p')
+//       p.classList.add('answerO')
+//       p.innerHTML = 'O'
+//       answerInput.appendChild(p)
+  
+//       const p1 = document.createElement('p')
+//       p1.classList.add('answerX')
+//       p1.innerHTML = 'X'
+//       answerInput.appendChild(p1)
+//      }    
+//   }      
 // }
 
 
+// const answerOEl = document.querySelector('.answerO')
+//     const answerXEl = document.querySelector('.answerX')
 
-
- 
-
-// function showAnswer() {
-//   const li = document.createElement('li');
-//   li.innerHTML = answer
-//   li.classList.add('answer')
-//   const ul = document.querySelector('.answer');
-//   ul.appendChild(li)
-//   console.log(ul)
-//   setTimeout(() => {
-//     gsap.to(answerBtn,1,{
-//     opacity:0
+//     answerOEl.addEventListener('click',function(event){
+//       if(answerXEl.classList==""){
+//         if(event.target.classList[0]==="answered"){
+//           event.target.classList.remove('answered')      
+//           return
+//         }
+//       }
+//       else{
+//         answerXEl.classList.remove('answered')
+//       }
+//       event.target.classList.add('answered')  
 //     })
-//   }, 500);
-// }
-
-
-// function showAndOut(counter,level){  
-//   for(let i=0; i<level; i++){
-//     let div = document.createElement("div");
-//     let containerEl = document.querySelector('.gamingBox')
-//     div.classList.add('number');
-//     div.innerText = Math.floor(Math.random()*10)
-//     containerEl.appendChild(div)
-//   }
-
-//   let boxsEl = document.querySelectorAll('.number');
-//   console.log(level)
-// if(counter<boxsEl.length){
-//   setTimeout(function(){
-//     boxsEl[counter].style.display = 'block';
-//     answer.push(boxsEl[counter].innerText)
-//     console.log(counter)        
-//     setTimeout(function(){
-//       boxsEl[counter-1].style.display='none';
-//     },1700,counter)    
-//     counter++;
-//     console.log(counter)
     
-//     showAndOut(counter)
-    
-//     },3700)
-//   }
-//   else{
-//     console.log(answer)
-//     setTimeout(function(){
-//       showBtn()
-//     },2000)
-
-//   }
-// }
-
-
-
-
-
-// answerForm.addEventListener('submit',function(event){
-//   event.preventDefault()
-//   answerFromUser = answerBox.value.split('')
-//   console.log(answerFromUser)  
-//   if(_.isEqual(answer,answerFromUser)){
-//     console.log('정답입니다!')
-//   }
-// })
-
+//     answerXEl.addEventListener('click',function(event){
+//       if(answerOEl.classList==""){
+//         if(event.target.classList[0]==="answered"){
+//           event.target.classList.remove('answered')      
+//           return
+//         }
+//       }
+//       else{
+//         answerOEl.classList.remove('answered')
+//       }
+//       event.target.classList.add('answered')  
+//     })

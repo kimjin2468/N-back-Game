@@ -1,0 +1,50 @@
+@media (max-width:500px){
+
+
+  #mainSecond > h1,p{
+    font-size:20px;
+  }
+
+  #gaming .gamingBoxInner{
+    font-size:50px;
+    margin-bottom:30px;
+    padding-top:30px;
+  }
+  .gamingBox .answerContainer{
+    grid-template-columns: repeat(4,1fr);
+  }
+
+  .gamingBox .answerContainer.lv2{
+    grid-template-columns: repeat(4,1fr);
+  }
+  .gamingBox .answerContainer.lv5{
+
+  }
+
+  .gamingBox .answerContainer .answerNumber .answerInput{    
+    display: flex;
+    flex-direction: column;    
+    height:93px;    
+    
+  }
+  .gamingBox .answerContainer .answerNumber .answerInput > p:nth-child(1){
+    flex-grow: 1;
+    border-bottom:1px solid whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .gamingBox .answerContainer .answerNumber .answerInput > p:nth-child(2){
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gamingBox .answerContainer .answerNumber .answerInput p:nth-child(1){
+
+  }
+
+  
+}
