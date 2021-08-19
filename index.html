@@ -14,6 +14,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="stylesheet" href="./css/media.css">
+  <script defer src="./js/answerData.js"></script>
+  <script defer src="./js/answerFromUser.js"></script>
   <script defer src="./js/main.js"></script>
   <title></title>
 </head>
@@ -74,38 +76,54 @@
         </div>       
         <div class="answerContainer">          
           <!-- <div class="answerNumber">1
-            <div class="answerInput">1</div>
-          </div>
-          <div class="answerNumber">1
-            <div class="answerInput">1</div>
-          </div>
-          <div class="answerNumber">1
-            <div class="answerInput">1</div>
-          </div>
-          <div class="answerNumber">1
-            <div class="answerInput">1</div>
-          </div>
-          <div class="answerNumber">1
-            <div class="answerInput">1</div>
-          </div>
-          <div class="answerNumber">1
             <div class="answerInput">
-              <div class="aswerO">O</div>
-              <div class="asnwerX">X</div>
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
             </div>
           </div>
           <div class="answerNumber">1
             <div class="answerInput">
-              <div class="aswerO">O</div>
-              <div class="asnwerX">X</div>
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
             </div>
           </div>
           <div class="answerNumber">1
             <div class="answerInput">
-              <div class="aswerO">O</div>
-              <div class="asnwerX">X</div>
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
             </div>
-          </div> -->
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
+            </div>
+          </div>
+          <div class="answerNumber">1
+            <div class="answerInput">
+              <p class="answerO">O</p>
+              <p class="answerX">X</p>
+            </div>
+          </div> 
+           -->
         </div>
         
         
@@ -137,9 +155,9 @@
       
       <div class="resultname col-lg-6 col-md-8 col-sm-10 col-12 mx-auto mb-3">
         <h1>&lt;정답 공개&gt;</h1>
-        
+        <div class="resultContainerCopy">
           <div class="resultContainer">
-            <div class="resultNumber">1
+            <!-- <div class="resultNumber">1
               <div class="resultAnswer">1</div>
             </div>
             <div class="resultNumber">1
@@ -168,14 +186,48 @@
             </div>
             <div class="resultNumber">1
               <div class="resultAnswer">1</div>
-            </div>
+            </div> -->
           </div>
-         
+          <h1>&lt;내가 누른 답&gt;</h1>
+          <div class="resultContainerP">
+            <!-- <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div>
+            <div class="resultNumberP">1
+              <div class="resultAnswerP">1</div>
+            </div> -->
+          </div>
+          </div>
+      </div>
       <div id="resultImg"  class="my-3 col-lg-6 col-md-8 col-sm-10 col-12 mx-auto" >
         
       </div>
       <div class="resultDesc">        
-        <button type="button" class="btn btn-outline-warning" onclick="changeResult()">몇개나 맞췄을까?!</button>
+        <button type="button" class="btn btn-outline-warning" onclick="reStart()">다시하기</button>   
       </div>    
       
     </section>

@@ -17,7 +17,7 @@ img{
 
 
 #mainFirst,#mainSecond,#mainNext,#gaming,#result,#showResult{
-  /* display: none; */
+   display: none; 
 }   
 .gamingBox .gamingBoxInner{  
   font-size: 150px;
@@ -75,6 +75,9 @@ img{
   height:80px;
   width:80px;  
 }
+#showResult{
+  position: relative;
+}
 #showResult .resultname > h1{
   margin-bottom:20px;
 }
@@ -95,6 +98,29 @@ img{
 }
 
 #showResult .resultname .resultContainer .resultNumber .resultAnswer{
+  font-family: initial;
+  border-top: 1px solid white;
+  height:50%;
+  font-size: 40px;
+  margin-top:10px
+}
+#showResult .resultname .resultContainerP{  
+  display: grid;
+  gap:2;
+  grid-template-columns: repeat(5,1fr);
+  background-color:rgba(255,200,0,.5);
+  margin-bottom:40px;
+}
+
+#showResult .resultname .resultContainerP .resultNumberP{
+  font-family: 'Nanum Pen Script', cursive;  
+  border: 1px solid white;
+  height:125px;  
+  font-size: 20px;
+  
+}
+
+#showResult .resultname .resultContainerP .resultNumberP .resultAnswerP{
   font-family: initial;
   border-top: 1px solid white;
   height:50%;

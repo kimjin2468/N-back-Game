@@ -12,6 +12,7 @@ const lv2El = document.querySelector('#lv-2')
 const lv5El = document.querySelector('#lv-5')
 const resultContainerEl = document.querySelector('.resultContainer')
 const textBoxEl = document.querySelector('.textBox')
+const resultContainerPEl = document.querySelector('.resultContainerP')
 let sparkleCount = 0
 let sparkleElcount = 0
 let c = 0
@@ -19,7 +20,6 @@ let c = 0
 let LEVEL = 0
 let counter = 0
 let answer = []
-let answerFromUser = []
 
 
 
@@ -263,10 +263,10 @@ function startGame(counter,level){
          makeNumber()       
          setTimeout(function(){          
            deleteNumber()          
-         },1700,counter)         //1700
+         },100,counter)         //1700
          counter++;         
          startGame(counter,level)         
-         },3700)            //3700
+         },100)            //3700
          
          
          
@@ -299,7 +299,12 @@ function makeNumber(){
       resultEl.style.display="block"
     },450)    
   },450) 
-  console.log(answer)
+  for(let i=0; i<answer.length; i++){
+    answerData[i].number = answer[i]
+  }
+ 
+  comeon()
+  
     
  }
 
@@ -336,9 +341,42 @@ function lv2Result (){
     const resultAnswerEl = document.createElement('div')
     resultAnswerEl.classList.add('resultAnswer')
     resultNumber.append(resultAnswerEl)     
-    resultAnswerEl.innerHTML= answer[i]     
- }
+    resultAnswerEl.innerHTML= answer[i]   
+    
+    const resultNumberP = document.createElement('div')  
+    resultNumberP.classList.add('resultNumberP') 
+    resultContainerPEl.appendChild(resultNumberP)
+    resultNumberP.innerHTML=`${i+1}번`
+    const resultAnswerPEl = document.createElement('div')
+    resultAnswerPEl.classList.add('resultAnswerP')
+    resultNumberP.append(resultAnswerPEl)     
+    resultAnswerPEl.innerHTML= answer[i]     
+   }  
+  for(let i=0; i<2; i++){
+    const resultAnswerPEls = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)
+    resultAnswerPEls[i].innerHTML=''        
+  }
+  for(let j=0; j<8; j++){    
+    const resultUserForm = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)  
+    console.log(resultUserForm)
+    console.log(answer)
+    if(resultUserForm[j+2].innerHTML===answer[j]){
+      answerData[j+2].answer = true
+      console.log(`${j+3}번 문제 정답:O`)
+    }
+    else{
+      answerData[j+2].answer = false
+      console.log(`${j+3}번 문제 정답:X`)
+    }
+    }
+
+    console.log(answerData)
+    console.log('정답객체↑')
+    
+    console.log(answerFromUser)
+    console.log('사용자 정답객체↑')
 }
+
 
 
 function lv5Result(){
@@ -350,8 +388,7 @@ function lv5Result(){
     const resultAnswerEl = document.createElement('div')
     resultAnswerEl.classList.add('resultAnswer')
     resultNumber.append(resultAnswerEl)     
-    resultAnswerEl.innerHTML= answer[i]    
-   
+    resultAnswerEl.innerHTML= answer[i]       
   }
  
 }
@@ -371,25 +408,30 @@ function reStart() {
   window.location = 'index.html'
 }
 
-const numbers = [1,2,3,4,5]
-
-
 const answerNumberEl = document.querySelector('.answerNumber')
 
-let colorCount=0
 
-const d = document.querySelectorAll('.answerNumber')
-let dC = 0;
-function go(){
-  if(dC<d.length){
-    setTimeout(() => {
-      
-    }, 4000)
-    dC++
-    go()
+
+
+
+function comeon(){
+  const o = document.querySelectorAll('.answerO')
+  const x = document.querySelectorAll('.answerX')
+
+  for(let i=0; i<8; i++){
+    if(o[i].classList[1]==='answered'){
+      answerFromUser[i].o = true
+    } 
+    else if(x[i].classList[1]==='answered'){
+      answerFromUser[i].x = true
+    }
   }
+
   
 }
+
+
+
 
 
 
@@ -480,3 +522,20 @@ function go(){
 //       }
 //       event.target.classList.add('answered')  
 //     })
+
+// let colorCount=0
+
+// const d = document.querySelectorAll('.answerNumber')
+// let dC = 0;
+// function go(){
+//   if(dC<d.length){
+//     setTimeout(() => {
+      
+//     }, 4000)
+//     dC++
+//     go()
+//   }
+  
+// }
+
+
