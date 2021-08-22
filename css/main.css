@@ -16,8 +16,9 @@ img{
 }
 
 
-#mainFirst,#mainSecond,#mainNext,#gaming,#result,#showResult{
+#mainFirst,#mainSecond, #mainNext,#gaming,#result,#showResult{
    display: none; 
+   
 }   
 .gamingBox .gamingBoxInner{  
   font-size: 150px;
@@ -111,6 +112,10 @@ img{
   background-color:rgba(255,200,0,.5);
   margin-bottom:40px;
 }
+#showResult .resultname .resultContainerCopy .resultPoint{
+  font-family: 'Nanum Pen Script', cursive; 
+  font-size:22px;
+}
 
 #showResult .resultname .resultContainerP .resultNumberP{
   font-family: 'Nanum Pen Script', cursive;  
@@ -127,6 +132,7 @@ img{
   font-size: 40px;
   margin-top:10px
 }
+
 
 
 

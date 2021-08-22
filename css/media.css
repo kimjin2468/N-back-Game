@@ -2,7 +2,7 @@
 
 
   #mainSecond > h1,p{
-    font-size:20px;
+    font-size:16px;
   }
 
   #gaming .gamingBoxInner{
@@ -17,8 +17,9 @@
   .gamingBox .answerContainer.lv2{
     grid-template-columns: repeat(4,1fr);
   }
-  .gamingBox .answerContainer.lv5{
-
+  .gamingBox .answerContainer.lv-20{
+    grid-template-columns: repeat(4,1fr);
+    gap:0;
   }
 
   .gamingBox .answerContainer .answerNumber .answerInput{    

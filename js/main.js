@@ -183,8 +183,7 @@ lv5El.addEventListener('click',function(){
   answerOEl[i].addEventListener('click',function(event){
     if(answerXEl[i].classList==""){
       if(event.target.classList[0]==="answered"){
-        event.target.classList.remove('answered')      
-        
+        event.target.classList.remove('answered')              
         return        
       }   
     }
@@ -217,6 +216,9 @@ lv5El.addEventListener('click',function(){
 
 function startGame(counter,level){ 
   do{         
+    if(level===20){
+      answerContainerEl.classList.add('lv-20')
+    }
     console.log(c)
     c++
     if(level===20&&c===6){
@@ -260,13 +262,13 @@ function startGame(counter,level){
   
   if(counter<level){
        setTimeout(function(){     
-         makeNumber()       
+         makeNumber(level)       
          setTimeout(function(){          
            deleteNumber()          
-         },100,counter)         //1700
+         },1700,counter)         //1700
          counter++;         
          startGame(counter,level)         
-         },100)            //3700
+         },3700)            //3700
          
          
          
@@ -275,7 +277,7 @@ function startGame(counter,level){
       setTimeout(function(){
         console.log('Done!')
            showBtn()
-         },2000)
+         },4000)
       }
 }
 function deleteNumber(){
@@ -283,8 +285,13 @@ function deleteNumber(){
   gamingBoxEl.innerHTML='&nbsp;'
   
 }
-function makeNumber(){
-  gamingBoxEl.innerHTML=Math.floor(Math.random()*10)
+function makeNumber(level){
+  if(level==10){
+  gamingBoxEl.innerHTML=Math.floor(Math.random()*5)
+  }
+  else if (level==20){
+    gamingBoxEl.innerHTML=Math.floor(Math.random()*10)
+  }
   
 }
  function showBtn(){
@@ -333,6 +340,7 @@ function makeNumber(){
 // 정답 화면 생성
 
 function lv2Result (){
+  let total = 0
   for(let i=0; i<10; i++){
     const resultNumber = document.createElement('div')  
     resultNumber.classList.add('resultNumber') 
@@ -349,37 +357,82 @@ function lv2Result (){
     resultNumberP.innerHTML=`${i+1}번`
     const resultAnswerPEl = document.createElement('div')
     resultAnswerPEl.classList.add('resultAnswerP')
-    resultNumberP.append(resultAnswerPEl)     
-    resultAnswerPEl.innerHTML= answer[i]     
+    resultNumberP.append(resultAnswerPEl)         
+    
    }  
   for(let i=0; i<2; i++){
     const resultAnswerPEls = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)
     resultAnswerPEls[i].innerHTML=''        
   }
   for(let j=0; j<8; j++){    
-    const resultUserForm = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)  
-    console.log(resultUserForm)
-    console.log(answer)
-    if(resultUserForm[j+2].innerHTML===answer[j]){
-      answerData[j+2].answer = true
-      console.log(`${j+3}번 문제 정답:O`)
+    const resultUserForm = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)      
+    const resultAnswerNumberP = document.querySelectorAll('.resultNumberP')
+    
+    if(answerFromUser[j].o === true){
+      resultUserForm[j+2].innerHTML = "O"
+      }
+    else if (answerFromUser[j].x ===true){
+      resultUserForm[j+2].innerHTML = "X"
+      }
+
+    if(answerData[j].number === answerData[j+2].number){
+      answerData[j+2].o = true
+      
     }
-    else{
-      answerData[j+2].answer = false
-      console.log(`${j+3}번 문제 정답:X`)
-    }
+    else if(answerData[j].number !== answerData[j+2].number){
+      answerData[j+2].x = true      
     }
 
-    console.log(answerData)
-    console.log('정답객체↑')
+    if(answerData[j+2].o ==true && answerFromUser[j].o == true){
+      resultAnswerNumberP[j+2].style.backgroundColor = 'rgba(0,0,255,.8)'
+      answerData[j+2].answer = true
+      
+      
+    }
+    else if(answerData[j+2].x == true && answerFromUser[j].x == true){
+      resultAnswerNumberP[j+2].style.backgroundColor = 'rgba(0,0,255,.8)'
+      answerData[j+2].answer = true      
+    }
+    else {
+      resultAnswerNumberP[j+2].style.backgroundColor = 'rgba(255,0,0,.5)'
+      
+    }
+
     
-    console.log(answerFromUser)
-    console.log('사용자 정답객체↑')
+
+    
+  }
+
+
+
+    
+  
+
+  console.log(answer)
+  console.log(answerData)
+  console.log('정답객체↑')
+  
+  console.log(answerFromUser)
+  console.log('사용자 정답객체↑')
+
+  for(let i=0; i<answerData.length; i++){
+    
+    if(answerData[i].answer ==true){
+      total += 1
+    }    
+  }
+  console.log(total)
+
+  const resultPointEl = document.querySelector('.resultPoint')
+  resultPointEl.innerHTML = `정답을 ${total}개나 맞추셨어요!`
 }
 
 
 
+
+
 function lv5Result(){
+  let total = 0;
   for(let i=0; i<20; i++){
     const resultNumber = document.createElement('div')  
     resultNumber.classList.add('resultNumber') 
@@ -388,8 +441,69 @@ function lv5Result(){
     const resultAnswerEl = document.createElement('div')
     resultAnswerEl.classList.add('resultAnswer')
     resultNumber.append(resultAnswerEl)     
-    resultAnswerEl.innerHTML= answer[i]       
+    resultAnswerEl.innerHTML= answer[i]   
+    
+    const resultNumberP = document.createElement('div')  
+    resultNumberP.classList.add('resultNumberP') 
+    resultContainerPEl.appendChild(resultNumberP)
+    resultNumberP.innerHTML=`${i+1}번`
+    const resultAnswerPEl = document.createElement('div')
+    resultAnswerPEl.classList.add('resultAnswerP')
+    resultNumberP.append(resultAnswerPEl)         
+    
+   }  
+  for(let i=0; i<5; i++){
+    const resultAnswerPEls = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)
+    resultAnswerPEls[i].innerHTML=''        
   }
+  for(let j=0; j<15; j++){    
+    const resultUserForm = document.querySelectorAll(`.resultAnswerP:nth-child(1)`)      
+    const resultAnswerNumberP = document.querySelectorAll('.resultNumberP')
+    
+    if(answerFromUser[j].o === true){
+      resultUserForm[j+5].innerHTML = "O"
+      }
+    else if (answerFromUser[j].x ===true){
+      resultUserForm[j+5].innerHTML = "X"
+      }
+
+    if(answerData[j].number === answerData[j+5].number){
+      answerData[j+5].o = true
+      
+    }
+    else if(answerData[j].number !== answerData[j+5].number){
+      answerData[j+5].x = true      
+    }
+
+    if(answerData[j+5].o ==true && answerFromUser[j].o == true){
+      resultAnswerNumberP[j+5].style.backgroundColor = 'rgba(0,0,255,.8)'
+      answerData[j+5].answer =true 
+     
+    }
+    else if(answerData[j+5].x == true && answerFromUser[j].x == true){
+      resultAnswerNumberP[j+5].style.backgroundColor = 'rgba(0,0,255,.8)'
+      answerData[j+5].answer =true       
+    }
+    else {
+      resultAnswerNumberP[j+5].style.backgroundColor = 'rgba(255,0,0,.5)'      
+    }    
+  }
+  console.log(answer)
+  console.log(answerData)
+  console.log('정답객체↑')
+  
+  console.log(answerFromUser)
+  console.log('사용자 정답객체↑')
+  for(let i=0; i<answerData.length; i++){
+    
+    if(answerData[i].answer ==true){
+      total += 1
+    }    
+  }
+  console.log(total)
+
+  const resultPointEl = document.querySelector('.resultPoint')
+  resultPointEl.innerHTML = `정답을 ${total}개나 맞추셨어요!`
  
 }
 function howToPlay(){
@@ -418,7 +532,7 @@ function comeon(){
   const o = document.querySelectorAll('.answerO')
   const x = document.querySelectorAll('.answerX')
 
-  for(let i=0; i<8; i++){
+  for(let i=0; i<15; i++){
     if(o[i].classList[1]==='answered'){
       answerFromUser[i].o = true
     } 
@@ -537,5 +651,3 @@ function comeon(){
 //   }
   
 // }
-
-
